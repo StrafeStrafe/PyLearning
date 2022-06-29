@@ -1,0 +1,47 @@
+def roman_add(x,y):
+    result = (roman_to_int(x) + roman_to_int(y))
+    print("Result in Arabic: ", result)
+    print("Result in Roman: ", int_to_roman(result))
+
+def roman_substract(x,y):
+    result = (roman_to_int(x) - roman_to_int(y))
+    print("Result in Arabic: ", result)
+    print("Result in Roman: ", int_to_roman(result))
+
+def roman_multiply(x,y):
+    result = (roman_to_int(x) * roman_to_int(y))
+    print("Result in Arabic: ", result)
+    print("Result in Roman: ", int_to_roman(result))
+
+def roman_divide(x,y):
+    result = (roman_to_int(x) / roman_to_int(y))
+    print("Result in Arabic: ", result)
+    print("Result in Roman: ", int_to_roman(result))
+
+def roman_square(x):
+    result = roman_to_int(x) **2
+    print("Result in Arabic: ", result)
+    print("Result in Roman: ", int_to_roman(result))
+	
+def int_to_roman(number:int):
+    arabic = (1000, 900,  500, 400, 100,  90, 50,  40, 10,  9,   5,  4,   1)
+    roman = ('M',  'CM', 'D', 'CD','C', 'XC','L','XL','X','IX','V','IV','I')
+    result = []
+    for i in range(len(arabic)):
+        count = int(number/arabic[i])
+        result.append(roman[i] * count)
+        number -= arabic[i] * count
+    return "".join(result)
+    
+	
+def roman_to_int(number: str) -> int:
+    roman = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+    summ= 0
+    for i in range(len(number)-1,-1,-1):
+        num = roman[number[i]]
+        if 4*num < summ: 
+            summ = summ-num
+        else: 
+            summ = summ+num
+    return summ
+roman_to_int("MM")
